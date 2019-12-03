@@ -5,6 +5,12 @@ export default class Modal extends React.Component {
     addTask = () => {
         this.props.addTask()
     }
+    mapOptions = () => {
+        return Object.values(this.props.level).map(item => {
+            return <option value={Number(item.value)} key={item.value}>{item.label}</option>
+        })
+    }
+
     render() {
         let submit = this.addTask;
         let btnText = 'Add Task'
@@ -20,9 +26,7 @@ export default class Modal extends React.Component {
                     <input id="task" name="task" onChange={this.props.setValue} type="text" value={this.props.task} />
                     <label htmlFor="priority">Set a priority</label>
                     <select onChange={this.props.setValue} defaultValue={this.props.priority} name="priority" id="priority">
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
+                        {this.mapOptions()}
                     </select>
                     <button onClick={submit}>{btnText}</button>
                 </div>
