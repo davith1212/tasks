@@ -7,15 +7,17 @@ export default class List extends React.Component {
         super(props)
         this.state = {
             list: [],
+            id: null,
             task: '',
             priority: 'Low',
-            showModal: false
+            showModal: false,
+            isEditing: false
         }
     }
 
     mapList = () => {
-        return this.state.list.map((item, index) => {
-            return <li key={index}>{item.task}</li>
+        return this.state.list.map((item) => {
+            return <li key={item.id}>{item.task} <button onClick={() => this.openEditor(item.id)}>edit</button></li>
         })
     }
 
@@ -33,11 +35,24 @@ export default class List extends React.Component {
     
     setSessionData = (data) => {
 		sessionStorage.setItem('taskList', JSON.stringify(data))
+    }
+    
+    openEditor = (e) => {
+		const listClone = _.cloneDeep(this.state.list);
+		const current = _.find(listClone, (o) => o.id === e);
+		this.setState({
+			id: e,
+			task: current.task,
+			priority: current.priority,
+			isEditing: true
+		})
+
+		this.toggleModal();
 	}
 
     addTask = () => {
 		const listClone = _.cloneDeep(this.state.list);
-		listClone.push({ task: this.state.task, priority: this.state.priority });
+		listClone.push({ id: Math.floor(Math.random() * 1000), task: this.state.task, priority: this.state.priority });
 		this.setState({
 			list: listClone,
 			task: '',
@@ -47,6 +62,23 @@ export default class List extends React.Component {
         this.setSessionData(listClone);
 		this.toggleModal();
     }
+
+    editTask = () => {
+		const listClone = _.cloneDeep(this.state.list);
+		const current = _.find(listClone, (o) => o.id === this.state.id);
+		current.task = this.state.task;
+		current.priority = this.state.priority;
+		this.setState({
+			list: listClone,
+			id: null,
+			task: '',
+			priority: 'Low',
+			isEditing: false
+		})
+
+		this.setSessionData(listClone);
+		this.toggleModal();
+	}
     
     componentDidMount() {
 		if (sessionStorage.getItem('taskList')) {
@@ -59,7 +91,7 @@ export default class List extends React.Component {
     render() {
         let modal;
         if (this.state.showModal) {
-            modal = <Modal toggleModal={this.toggleModal} setValue={this.setValue} addTask={this.addTask} priority={this.state.priority} task={this.state.tast} />
+            modal = <Modal toggleModal={this.toggleModal} setValue={this.setValue} addTask={this.addTask} priority={this.state.priority} task={this.state.task} isEditing={this.state.isEditing} editTask={this.editTask} />
         }
         return (
             <main>
