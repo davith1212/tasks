@@ -8,7 +8,6 @@ function App() {
       <h1>Task Master</h1>
       <p>Create some tasks!</p>
       <List />
-      <button>Add Task</button>
     </div>
   );
 }
