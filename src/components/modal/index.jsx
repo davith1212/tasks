@@ -8,14 +8,14 @@ export default class Modal extends React.Component {
                 <div className="modal-wrapper">
                     <span className="close-modal" onClick={this.props.toggleModal}>X</span>
                     <label htmlFor="task">Create a task</label>
-                    <input id="task" name="task" type="text" />
+                    <input id="task" name="task" onChange={this.props.setValue} type="text" />
                     <label htmlFor="priority">Set a priority</label>
-                    <select name="priority" id="priority">
-                        <option value="high">High</option>
-                        <option value="medium">Medium</option>
+                    <select onChange={this.props.setValue} defaultValue={this.props.priority} name="priority" id="priority">
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
                         <option value="Low">Low</option>
                     </select>
-                    <button onClick={this.props.toggleModal}>Add Task</button>
+                    <button onClick={this.props.addTask}>Add Task</button>
                 </div>
             </div>
         )
