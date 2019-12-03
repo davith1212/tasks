@@ -5,9 +5,11 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Task Master</h1>
-      <p>Create some tasks!</p>
-      <List />
+      <section className="section-wrapper">
+        <h1>Things to do..</h1>
+        <p>Let's create some tasks!</p>
+        <List />
+      </section>
     </div>
   );
 }

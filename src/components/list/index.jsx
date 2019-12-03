@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from '../modal';
 import _ from 'lodash';
 import Level from '../../global'
+import './list.css';
 
 export default class List extends React.Component {
     constructor(props) {
@@ -23,8 +24,9 @@ export default class List extends React.Component {
                 return (
                     <li key={item.id} >
                         <p>{item.task}</p>
-                        <small>Priority: {_.find(Level, { 'value': item.priority }).label}</small>
-                        <button onClick={() => this.openEditor(item.id)}>Edit</button> <button onClick={() => this.removeTask(item.id)}>Remove</button>
+                        <small>Priority: <span className={_.find(Level, { 'value' : item.priority }).label}>{_.find(Level, { 'value': item.priority }).label}</span></small>
+                        <button className="btn-link" onClick={() => this.openEditor(item.id)}>Edit</button>
+                        <button className="btn-link" onClick={() => this.removeTask(item.id)}>Remove</button>
                     </li>
                 )
             })
@@ -115,8 +117,10 @@ export default class List extends React.Component {
             modal = <Modal currentTask={this.state.currentTask} toggleModal={this.toggleModal} addTask={this.addTask} task={this.state.task} priority={this.state.priority} setValue={this.setValue} isEditing={this.state.isEditing} editTask={this.editTask} level={Level} />
         }
         return (
-            <main>
+            <main className="main-wrapper">
+                <button onClick={this.toggleModal}>Add Task</button>
                 <form>
+                    <small>Sort by priority:</small>
                     <label>
                         <input
                             type="radio"
@@ -126,7 +130,7 @@ export default class List extends React.Component {
                             checked={this.state.priorityOrder === 'asc'}
                             onChange={this.setValue}
                         />
-                        Low
+                        <small>Low</small>
 					</label>
                     <label>
                         <input
@@ -136,13 +140,12 @@ export default class List extends React.Component {
                             value="desc"
                             onChange={this.setValue}
                         />
-                        High
+                        <small>High</small>
 					</label>
                 </form>
                 <ul className="list-wrapper">
                     {this.mapList()}
                 </ul>
-                <button onClick={this.toggleModal}>Add Task</button>
                 {modal}
             </main>
         )
