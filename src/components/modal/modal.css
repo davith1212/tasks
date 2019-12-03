@@ -1,0 +1,28 @@
+.modal-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.4);
+    transition: opacity 2s;
+}
+.modal-wrapper {
+    position: absolute;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(250,250,250);
+    padding: 1rem;
+}
+
+.modal-wrapper label,
+.modal-wrapper input,
+.modal-wrapper select {
+    width: 100%;
+    margin: 1rem 0;
+}
+.modal-wrapper .close-modal {
+    float: right;
+}

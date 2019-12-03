@@ -1,22 +1,32 @@
-.App {
-  text-align: center;
+html {
+  width: 100%;
+  height: 100%;
+  background-image: url('http://www.talencia.cat/mypics/max/2/25461_hd-images-for-website-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+button {
+  padding: 10px 20px;
+  background-color: #589ffc;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
 }
 
-.App-logo {
-  height: 40vmin;
+.btn-link {
+  padding: 5px;
+  background-color: transparent;
+  color: #589ffc;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.section-wrapper {
+  width: 60%;
+  margin: 5rem auto;
+  padding: 1rem;
+  background-color: rgb(250, 250, 250);
+  border-radius: 3px;
 }
 
-.App-link {
-  color: #09d3ac;
+.section-wrapper h1, .section-wrapper p {
+  margin: 0.5rem 0 0 0;
 }

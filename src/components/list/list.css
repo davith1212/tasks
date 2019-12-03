@@ -1,0 +1,28 @@
+.main-wrapper {
+    margin: 1rem 0;
+}
+
+.main-wrapper form {
+    display: inline-block;
+    padding: 0 0 0 1rem;
+}
+.main-wrapper form input {
+    margin: 0 0.5rem;
+}
+
+.list-wrapper li {
+    margin-bottom: 10px;
+}
+
+.list-wrapper li p {
+    margin: 0;
+}
+.Low {
+    color: green;
+}
+.Medium {
+    color: orange;
+}
+.High {
+    color: red;
+}
