@@ -17,7 +17,7 @@ export default class List extends React.Component {
 
     mapList = () => {
         return this.state.list.map((item) => {
-            return <li key={item.id}>{item.task} <button onClick={() => this.openEditor(item.id)}>edit</button></li>
+            return <li key={item.id}>{item.task} <button onClick={() => this.openEditor(item.id)}>edit</button><button onClick={() => this.removeTask(item.id)}>Remove</button></li>
         })
     }
 
@@ -78,6 +78,16 @@ export default class List extends React.Component {
 
 		this.setSessionData(listClone);
 		this.toggleModal();
+    }
+    
+    removeTask = (id) => {
+		const listClone = _.cloneDeep(this.state.list);
+		listClone.splice(_.findIndex(listClone, (o) => o.id === id), 1)
+		this.setState({
+			list: listClone
+		})
+
+		this.setSessionData(listClone);
 	}
     
     componentDidMount() {
